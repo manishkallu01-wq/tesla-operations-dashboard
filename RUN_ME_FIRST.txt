@@ -1,0 +1,32 @@
+EV OPERATIONS INTELLIGENCE DASHBOARD
+====================================
+
+FASTEST RUN (React only — works with built-in demo data)
+---------------------------------------------------------
+1. Open Terminal in this folder.
+2. Run:
+
+   npm install
+   npm run dev
+
+3. Open http://localhost:5173
+
+FULL-STACK RUN (React + Flask API)
+----------------------------------
+1. Run once:
+
+   ./setup.sh
+
+2. Then run:
+
+   ./run.sh
+
+3. Open http://localhost:5173
+
+INTERVIEW SUMMARY
+-----------------
+"I built a responsive operations analytics dashboard in React that turns complex factory data into a digestible interface. It consumes a Flask REST API, supports factory and date filtering, visualizes production and quality KPIs, surfaces operational alerts, and provides searchable line-level details with CSV export. I also added a graceful local-data fallback so the UI remains usable if the API is unavailable."
+
+IMPORTANT
+---------
+All data is synthetic. This is an independent interview demo, not an official Tesla product.
