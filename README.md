@@ -6,7 +6,7 @@ A production-style operations analytics dashboard for monitoring vehicle output,
 
 ## Dashboard Preview
 
-![EV Manufacturing Operations Dashboard](./assets/tesla-operations-dashboard.png)
+<img width="2047" height="1122" alt="tesla-operations-dashboard" src="https://github.com/user-attachments/assets/4fde717c-2586-4c65-bd03-3c160138ae18" />
 
 ## 🎯 Project Objective
 
