@@ -1,193 +1,187 @@
-# EV Manufacturing Operations Intelligence Dashboard
+# ⚡ EV Manufacturing Operations Intelligence Dashboard
 
-> Full-stack operations analytics application for monitoring synthetic EV manufacturing performance across factories, production lines, quality, downtime, alerts, and target attainment.
+A production-style operations analytics dashboard for monitoring vehicle output, production targets, first-pass quality, downtime, factory performance, and operational exceptions across an EV manufacturing network.
 
-> **Portfolio disclaimer:** All operational data is synthetic and independently created for demonstration. This is **not an official Tesla product or internal Tesla system**.
+> **Portfolio project:** demonstrates data-product thinking, operational KPI design, dashboard engineering, reliability/fallback behavior, and analytics-oriented UX. The displayed manufacturing data is synthetic and does not represent proprietary Tesla data.
 
-## Why This Project
+## Dashboard Preview
 
-This project demonstrates how a Data/Analytics Engineer can turn operational data into a reliable decision-support interface. It combines a React frontend, Flask REST API, structured operational metrics, filtering, alert workflows, and exportable line-level data.
+![EV Manufacturing Operations Dashboard](./assets/tesla-operations-dashboard.png)
 
-## Architecture
+## 🎯 Project Objective
 
-```text
-Synthetic Factory Operations Data
-              │
-              ▼
-        Flask REST API
-        ├── /api/health
-        └── /api/dashboard
-              │
-              ▼
-        React Analytics UI
-        ├── KPI monitoring
-        ├── production trends
-        ├── factory comparison
-        ├── quality monitoring
-        ├── operational alerts
-        └── line-level search/export
-              │
-              ▼
-       Business Decisions
-```
+Manufacturing teams need a single operational view that turns production and quality signals into actionable information. This project models that experience as an operations intelligence dashboard focused on:
 
-## Key Capabilities
+- Production output versus plan
+- Target attainment and throughput trends
+- First-pass yield and quality monitoring
+- Downtime and reliability indicators
+- Factory/line comparison
+- Operational alerts and exceptions
+- Time-range and factory-level filtering
 
-- Production output vs. target attainment
-- First-pass quality monitoring
-- Average downtime analysis
-- Factory-level performance comparison
-- Operational alert prioritization and acknowledgement
-- Searchable line-level operational table
-- Status filtering across Healthy / Watch / Attention states
-- CSV export for downstream analysis
-- API health endpoint
-- Frontend fallback for API unavailability
-- Responsive React UI with reusable components
-- Unit tests and production build workflow
-
-## Technology Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | React 19, Vite |
-| Visualization | Recharts |
-| UI | Lucide React, CSS |
-| Backend | Python, Flask |
-| API | REST / JSON |
-| Testing | Vitest |
-| Development | npm, Vite |
-| Data | Synthetic operational dataset |
-
-## Operational Data Model
-
-The API exposes four primary analytical areas:
-
-| Dataset | Purpose |
-|---|---|
-| Daily production series | Output, target, quality, downtime, energy by factory/date |
-| Factory comparison | Current production and quality performance by factory |
-| Alerts | Operational events with severity, factory, description, and time |
-| Operations | Line-level throughput, quality, downtime, and status |
-
-## API
-
-### Health Check
-
-```http
-GET /api/health
-```
-
-Returns a lightweight service-health response.
-
-### Dashboard Data
-
-```http
-GET /api/dashboard?factory=All&days=14
-```
-
-Supported filters:
-
-- `factory`: `All`, `Fremont`, `Austin`, `Berlin`, or `Shanghai`
-- `days`: selected historical window
-
-The response contains filters, KPIs, trend data, factory comparison data, alerts, operations, and an update timestamp.
-
-## Project Structure
+## 🏗️ Product Architecture
 
 ```text
-tesla-operations-dashboard/
-├── src/
-│   ├── components/          # Reusable dashboard components
-│   ├── data/                # Demo/fallback dataset
-│   ├── services/            # REST API integration
-│   ├── utils/               # Metrics, filtering, and CSV helpers
-│   └── App.jsx              # Application composition
-├── server/
-│   ├── app.py               # Flask REST API and synthetic data layer
-│   └── requirements.txt     # Backend dependencies
-├── tests/                   # Frontend/unit tests
-├── package.json
-├── vite.config.js
-└── README.md
+Operational Data
+      │
+      ├── Production / target metrics
+      ├── Quality / first-pass yield
+      ├── Downtime / reliability
+      └── Exception signals
+              │
+              ▼
+      Analytics / Data Layer
+              │
+              ▼
+      KPI + Aggregation Logic
+              │
+              ▼
+      Operations Dashboard
+              │
+              ├── Executive KPIs
+              ├── Trend analysis
+              ├── Factory comparison
+              └── Alerts / exceptions
 ```
 
-## Run Locally
+The design separates operational metrics from their presentation so that the dashboard can evolve from synthetic data into a live manufacturing data product.
 
-### Frontend + API
+## 📊 Core Analytics
 
-```bash
-npm install
+| Area | Operational question | Example KPI |
+|---|---|---|
+| Production | Are factories meeting plan? | Vehicles produced / target attainment |
+| Quality | Are units passing inspection the first time? | First-pass yield |
+| Reliability | Where is capacity being lost? | Average downtime |
+| Factory performance | Which sites or lines need attention? | Output, quality, downtime |
+| Exceptions | What requires operator attention? | Alert count / severity |
 
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r server/requirements.txt
+### KPI design
 
-npm run dev:all
+- **Vehicles produced** — total production volume for the selected period.
+- **Target attainment** — actual output relative to the production plan.
+- **First-pass quality** — share of units passing without rework or repeat inspection.
+- **Average downtime** — average lost operating time per factory per day.
+- **Output vs. target** — trend view for identifying sustained production gaps.
+
+## 🔎 Operations Workflow
+
+1. Select a factory scope.
+2. Select the operating time window.
+3. Review network-level KPIs.
+4. Compare actual production with target.
+5. Check first-pass quality and reliability signals.
+6. Investigate factory-level differences.
+7. Prioritize operational exceptions requiring action.
+
+## ⚙️ Engineering Focus
+
+This project is intentionally positioned as a **Data Engineer + Analytics Engineering** portfolio project rather than only a visual UI exercise.
+
+### Data engineering concepts represented
+
+- Metric-oriented data modeling
+- Aggregation and KPI computation
+- Separation of data, business logic, and presentation
+- Time-window filtering
+- Operational exception handling
+- Deterministic fallback behavior for unavailable live data
+- Clear distinction between synthetic and production data
+
+### Reliability considerations
+
+The dashboard is designed to remain useful when a live analytics source is unavailable by exposing a clearly labeled fallback state rather than silently presenting synthetic data as live production information.
+
+## 🧪 Quality & Validation
+
+Recommended validation for extending the project to production includes:
+
+- Schema validation for incoming operational events
+- Null and range checks for manufacturing KPIs
+- Duplicate-event detection
+- Freshness and completeness monitoring
+- Unit tests for KPI calculations
+- Integration tests for analytics/API boundaries
+- Dashboard smoke tests for critical user flows
+
+## 🚀 Production Architecture Roadmap
+
+A production deployment could evolve toward:
+
+```text
+Factory / MES / IoT Events
+          │
+          ▼
+   Kafka / Event Streaming
+          │
+          ▼
+ Spark / Stream Processing
+          │
+          ├── Quality + validation
+          ├── Aggregations
+          └── Operational alerts
+          │
+          ▼
+ Data Lake / Warehouse
+          │
+          ▼
+ Semantic KPI Layer / API
+          │
+          ▼
+ Operations Dashboard
 ```
 
-Open the frontend at `http://localhost:5173`.
+Potential production components include Kafka, Spark, an object-store data lake, Snowflake/BigQuery, dbt, Airflow, and containerized deployment depending on scale and organizational requirements.
 
-The Flask API runs at `http://127.0.0.1:5000`.
+## 📈 Business Value
 
-### Frontend Only
+The dashboard is designed to help manufacturing stakeholders:
 
-The application can run with the local demo dataset when the API is unavailable:
+- Detect production-plan gaps earlier.
+- Identify quality deterioration before it becomes a larger rework problem.
+- Compare factory performance using consistent KPIs.
+- Surface downtime and operational exceptions in one place.
+- Reduce the time required to move from raw operational signals to an actionable view.
 
-```bash
-npm install
-npm run dev
-```
+## 🛠️ Technology Positioning
 
-## Test & Production Build
+**Data Engineering:** ETL/ELT, KPI aggregation, data validation, operational analytics
 
-```bash
-npm test
-npm run build
-npm run preview
-```
+**Streaming / Processing:** Kafka and Spark are natural production extensions for the modeled architecture
 
-## Engineering Decisions
+**Analytics:** Manufacturing KPIs, time-series trends, exception monitoring, comparative analysis
 
-### API fallback
+**Application:** Interactive operations dashboard with filtering and responsive visualization
 
-The frontend does not fail completely when the backend is unavailable. The API service falls back to deterministic local data, making the UI usable for demonstrations and development.
+**DevOps:** Containerized and CI/CD-oriented deployment can be added for productionization
 
-### Deterministic synthetic data
+## 🔮 Future Enhancements
 
-The backend uses seeded random variation rather than uncontrolled randomness, which keeps the demo reproducible while still producing realistic operational movement.
+- Connect to a real event-streaming source.
+- Add line-level drill-down and shift-level analysis.
+- Introduce anomaly detection for production and quality metrics.
+- Add alert thresholds and notification workflows.
+- Persist historical KPI snapshots for trend analysis.
+- Add role-based access for operators, plant managers, and executives.
+- Add automated data-quality monitoring and observability.
+- Deploy the dashboard with a cloud-hosted API and warehouse-backed semantic layer.
 
-### Separation of concerns
+## ⚠️ Data & Disclaimer
 
-The application separates UI components, API access, data generation, and metric utilities so each layer can evolve independently.
+This repository is a portfolio demonstration. **The manufacturing data shown in the dashboard is synthetic/demo data and is not Tesla proprietary information.** Tesla branding is used only to establish the EV-manufacturing context of the portfolio demonstration.
 
-### Operational state
+## 👨‍💻 About
 
-Alert acknowledgement is persisted in browser storage, allowing an operator's workflow state to survive page refreshes during a session.
+**Manish Reddy Kallu** — Data Engineer focused on building reliable data pipelines, distributed processing workflows, analytics platforms, and operational data products.
 
-## Portfolio Talking Points
+- GitHub: [manishkallu01-wq](https://github.com/manishkallu01-wq)
+- LinkedIn: [Manish Reddy Kallu](https://www.linkedin.com/)
 
-- Designed a full-stack operational analytics workflow rather than a static dashboard.
-- Implemented REST-based data serving with explicit filtering parameters.
-- Built reusable React components for KPIs, charts, alerts, filters, and line-level operations.
-- Added data-export capability for downstream operational analysis.
-- Added graceful API failure handling and a health endpoint.
-- Added automated tests and a production build pipeline.
+## 📬 Contact
 
-## Production Extensions
+For collaboration, feedback, or opportunities, connect through GitHub or LinkedIn.
 
-A production deployment could replace the synthetic source with a streaming or batch data platform and add:
+---
 
-- Kafka or cloud event ingestion
-- Object storage / data lake layer
-- Spark or SQL transformation jobs
-- Warehouse dimensional modeling
-- Airflow orchestration
-- Data-quality testing and observability
-- Authentication and role-based access
-- Prometheus/Grafana monitoring
-- CI/CD and containerized deployment
-
-## Interview Summary
-
-**Built a full-stack EV manufacturing operations dashboard using React and Flask, exposing production, target attainment, quality, downtime, alerts, and line-level metrics through a filtered REST API with resilient frontend fallback, automated tests, and CSV-based operational reporting.**
+**Project focus:** Data Engineering · Analytics Engineering · Manufacturing Intelligence · Operational Analytics · Data Products
