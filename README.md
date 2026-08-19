@@ -185,3 +185,27 @@ For collaboration, feedback, or opportunities, connect through GitHub or LinkedI
 ---
 
 **Project focus:** Data Engineering · Analytics Engineering · Manufacturing Intelligence · Operational Analytics · Data Products
+
+## Reproducibility contract
+
+This is a portfolio operations simulator, not a connection to Tesla production systems. The repository is complete when both application layers install cleanly, frontend tests pass, the Flask API responds, and the dashboard renders the documented mock-data experience.
+
+```bash
+npm ci
+npm test -- --run
+python -m venv .venv
+source .venv/bin/activate
+pip install -r server/requirements.txt
+python scripts/validate_project.py
+```
+
+| Layer | Responsibility | Verification |
+|---|---|---|
+| React/Vite | Operations UI and interaction model | Vitest + production build |
+| Metrics utilities | Deterministic KPI calculations | Unit tests |
+| Flask | Local dashboard API | Syntax/import smoke checks |
+| Mock dataset | Stable portfolio demonstration data | Required-field validation |
+
+## Decision methodology
+
+The dashboard organizes operations around a simple loop: detect a KPI deviation, locate the affected factory or line, compare trend and target, review severity-ranked alerts, and identify the next operational action. Production use would require authenticated APIs, governed metric definitions, freshness SLAs, lineage, role-based access, alert ownership, and audit logs.
