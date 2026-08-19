@@ -81,6 +81,18 @@ OPERATIONS = [
 ]
 
 
+def parse_dashboard_filters(factory: str, days_value: str) -> tuple[str, int]:
+    if factory not in {"All", *FACTORIES}:
+        raise ValueError("Unknown factory")
+    try:
+        days = int(days_value)
+    except ValueError as exc:
+        raise ValueError("days must be an integer") from exc
+    if not 1 <= days <= 90:
+        raise ValueError("days must be between 1 and 90")
+    return factory, days
+
+
 def filtered_daily(factory: str, days: int) -> list[dict[str, Any]]:
     cutoff = date.today() - timedelta(days=max(days - 1, 0))
     return [
@@ -123,8 +135,13 @@ def health():
 
 @app.get("/api/dashboard")
 def dashboard():
-    factory = request.args.get("factory", "All")
-    days = int(request.args.get("days", "14"))
+    try:
+        factory, days = parse_dashboard_filters(
+            request.args.get("factory", "All"),
+            request.args.get("days", "14"),
+        )
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
     rows = filtered_daily(factory, days)
     trend = aggregate_by_date(rows)
 
