@@ -1,4 +1,4 @@
-# ⚡ EV Manufacturing Operations Intelligence Dashboard
+# EV Manufacturing Operations Intelligence Dashboard
 
 A production-style operations analytics dashboard for monitoring vehicle output, production targets, first-pass quality, downtime, factory performance, and operational exceptions across an EV manufacturing network.
 
@@ -8,7 +8,7 @@ A production-style operations analytics dashboard for monitoring vehicle output,
 
 <img width="2047" height="1122" alt="tesla-operations-dashboard" src="https://github.com/user-attachments/assets/4fde717c-2586-4c65-bd03-3c160138ae18" />
 
-## 🎯 Project Objective
+## Project Objective
 
 Manufacturing teams need a single operational view that turns production and quality signals into actionable information. This project models that experience as an operations intelligence dashboard focused on:
 
@@ -20,7 +20,7 @@ Manufacturing teams need a single operational view that turns production and qua
 - Operational alerts and exceptions
 - Time-range and factory-level filtering
 
-## 🏗️ Product Architecture
+## Product Architecture
 
 ```text
 Operational Data
@@ -47,7 +47,7 @@ Operational Data
 
 The design separates operational metrics from their presentation so that the dashboard can evolve from synthetic data into a live manufacturing data product.
 
-## 📊 Core Analytics
+## Core Analytics
 
 | Area | Operational question | Example KPI |
 |---|---|---|
@@ -65,7 +65,7 @@ The design separates operational metrics from their presentation so that the das
 - **Average downtime** — average lost operating time per factory per day.
 - **Output vs. target** — trend view for identifying sustained production gaps.
 
-## 🔎 Operations Workflow
+## Operations Workflow
 
 1. Select a factory scope.
 2. Select the operating time window.
@@ -75,7 +75,7 @@ The design separates operational metrics from their presentation so that the das
 6. Investigate factory-level differences.
 7. Prioritize operational exceptions requiring action.
 
-## ⚙️ Engineering Focus
+## Engineering Focus
 
 This project is intentionally positioned as a **Data Engineer + Analytics Engineering** portfolio project rather than only a visual UI exercise.
 
@@ -93,7 +93,7 @@ This project is intentionally positioned as a **Data Engineer + Analytics Engine
 
 The dashboard is designed to remain useful when a live analytics source is unavailable by exposing a clearly labeled fallback state rather than silently presenting synthetic data as live production information.
 
-## 🧪 Quality & Validation
+## Quality & Validation
 
 Recommended validation for extending the project to production includes:
 
@@ -105,7 +105,7 @@ Recommended validation for extending the project to production includes:
 - Integration tests for analytics/API boundaries
 - Dashboard smoke tests for critical user flows
 
-## 🚀 Production Architecture Roadmap
+## Production Architecture Roadmap
 
 A production deployment could evolve toward:
 
@@ -134,7 +134,7 @@ Factory / MES / IoT Events
 
 Potential production components include Kafka, Spark, an object-store data lake, Snowflake/BigQuery, dbt, Airflow, and containerized deployment depending on scale and organizational requirements.
 
-## 📈 Business Value
+## Business Value
 
 The dashboard is designed to help manufacturing stakeholders:
 
@@ -144,7 +144,7 @@ The dashboard is designed to help manufacturing stakeholders:
 - Surface downtime and operational exceptions in one place.
 - Reduce the time required to move from raw operational signals to an actionable view.
 
-## 🛠️ Technology Positioning
+## Technology Positioning
 
 **Data Engineering:** ETL/ELT, KPI aggregation, data validation, operational analytics
 
@@ -156,7 +156,7 @@ The dashboard is designed to help manufacturing stakeholders:
 
 **DevOps:** Containerized and CI/CD-oriented deployment can be added for productionization
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - Connect to a real event-streaming source.
 - Add line-level drill-down and shift-level analysis.
@@ -167,18 +167,18 @@ The dashboard is designed to help manufacturing stakeholders:
 - Add automated data-quality monitoring and observability.
 - Deploy the dashboard with a cloud-hosted API and warehouse-backed semantic layer.
 
-## ⚠️ Data & Disclaimer
+## Data & Disclaimer
 
 This repository is a portfolio demonstration. **The manufacturing data shown in the dashboard is synthetic/demo data and is not Tesla proprietary information.** Tesla branding is used only to establish the EV-manufacturing context of the portfolio demonstration.
 
-## 👨‍💻 About
+## About
 
 **Manish Reddy Kallu** — Data Engineer focused on building reliable data pipelines, distributed processing workflows, analytics platforms, and operational data products.
 
 - GitHub: [manishkallu01-wq](https://github.com/manishkallu01-wq)
 - LinkedIn: [Manish Reddy Kallu](https://www.linkedin.com/)
 
-## 📬 Contact
+## Contact
 
 For collaboration, feedback, or opportunities, connect through GitHub or LinkedIn.
 
