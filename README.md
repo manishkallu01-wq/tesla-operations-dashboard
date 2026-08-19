@@ -2,7 +2,7 @@
 
 A production-style operations analytics dashboard for monitoring vehicle output, production targets, first-pass quality, downtime, factory performance, and operational exceptions across an EV manufacturing network.
 
-> **Portfolio project:** demonstrates data-product thinking, operational KPI design, dashboard engineering, reliability/fallback behavior, and analytics-oriented UX. The displayed manufacturing data is synthetic and does not represent proprietary Tesla data.
+> **reference project:** shows data-product thinking, operational KPI design, dashboard engineering, reliability/fallback behavior, and analytics-oriented UX. The displayed manufacturing data is synthetic and does not represent proprietary Tesla data.
 
 ## Dashboard Preview
 
@@ -77,7 +77,7 @@ The design separates operational metrics from their presentation so that the das
 
 ## Engineering Focus
 
-This project is intentionally positioned as a **Data Engineer + Analytics Engineering** portfolio project rather than only a visual UI exercise.
+This project is intentionally positioned as a **Data Engineer + Analytics Engineering** reference project rather than only a visual UI exercise.
 
 ### Data engineering concepts represented
 
@@ -169,7 +169,7 @@ The dashboard is designed to help manufacturing stakeholders:
 
 ## Data & Disclaimer
 
-This repository is a portfolio demonstration. **The manufacturing data shown in the dashboard is synthetic/demo data and is not Tesla proprietary information.** Tesla branding is used only to establish the EV-manufacturing context of the portfolio demonstration.
+This repository is a demonstration. **The manufacturing data shown in the dashboard is synthetic/demo data and is not Tesla proprietary information.** Tesla branding is used only to establish the EV-manufacturing context of the demonstration.
 
 ## About
 
@@ -204,7 +204,7 @@ python scripts/validate_project.py
 | React/Vite | Operations UI and interaction model | Vitest + production build |
 | Metrics utilities | Deterministic KPI calculations | Unit tests |
 | Flask | Local dashboard API | Syntax/import smoke checks |
-| Mock dataset | Stable portfolio demonstration data | Required-field validation |
+| Mock dataset | Stable demonstration data | Required-field validation |
 
 ## Decision methodology
 
